@@ -91,11 +91,10 @@ def run(
     if is_url and is_file:
         source = check_file(source)  # download
 
-    # Directories
+    # Directories # for test
     save_dir = increment_path(Path(project) / name, exist_ok=exist_ok)  # increment run
     (save_dir / 'labels' if save_txt else save_dir).mkdir(parents=True, exist_ok=True)  # make dir
 
-    ### ERR
     # Load model
     device = select_device(device)
     model = DetectMultiBackend(weights, device=device, dnn=dnn, data=data, fp16=half)
@@ -125,7 +124,7 @@ def run(
             if len(im.shape) == 3:
                 im = im[None]  # expand for batch dim
 
-        # Inference
+        # Inference # for test
         with dt[1]:
             visualize = increment_path(save_dir / Path(path).stem, mkdir=True) if visualize else False
             pred = model(im, augment=augment, visualize=visualize)
@@ -167,7 +166,7 @@ def run(
                     
                     class_names.add(names[int(c)]) # 슬쩍 가져와서 집합에 넣다
                 
-                # Write results
+                # Write results # for test
                 for *xyxy, conf, cls in reversed(det):
                     if save_txt:  # Write to file
                         xywh = (xyxy2xywh(torch.tensor(xyxy).view(1, 4)) / gn).view(-1).tolist()  # normalized xywh
@@ -192,7 +191,7 @@ def run(
                 cv2.imshow(str(p), im0)
                 cv2.waitKey(1)  # 1 millisecond
 
-            # Save results (image with detections)
+            # Save results (image with detections) # for test
             if save_img:
                 if dataset.mode == 'image':
                     cv2.imwrite(save_path, im0)
@@ -213,11 +212,6 @@ def run(
 
         # Print time (inference-only)
         LOGGER.info(f"{s}{'' if len(det) else '(no detections), '}{dt[1].dt * 1E3:.1f}ms")
-        
-        #txt로 만들어볼까
-        newfile = open(f"{save_dir}/class_names.txt", "w", encoding="UTF-8")
-        for i in class_names:
-            newfile.write(f"{i}\n")
         
         return class_names
 
