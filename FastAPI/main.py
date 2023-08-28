@@ -95,20 +95,21 @@ def check_challenge(photo_location: str, challenge: Challenge) -> dict:
         name='exp', exist_ok=False, line_thickness=3, hide_labels=False, hide_conf=False, half=False, dnn=False, vid_stride=1
     )
 
-    answer = challenge.answer.split(", ")
-    answer = set(answer)
-    founded = answer.intersection(objects)
-    missing = answer.difference(objects)
+    answers = challenge.answer.split(", ")
+    answers = set(answers)
+    founded = answers.intersection(objects)
+    missing = answers.difference(objects)
     print(objects)
-    if(missing):
+    if(founded):
+        result = {
+            "success":True,
+            "founded":list(founded)
+        }
+    else:
         result = {
             "success":False,
             "reason":"missing values",
-            "missing":missing
-        }
-    elif(founded):
-        result = {
-            "success":True
+            "missing":list(missing)
         }
 
     return result
