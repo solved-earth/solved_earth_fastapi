@@ -12,7 +12,6 @@ PROJECT_DIR = Path(__file__).resolve().parent.parent
 BASE_DIR = Path(__file__).resolve().parent
 STATIC_DIR = os.path.join(BASE_DIR,'static')
 IMG_DIR = os.path.join(STATIC_DIR,'images')
-SERVER_IMG_DIR = os.path.join('http://localhost:8000/','static/','images/')
 
 sqlite_file_name = "database.db"
 sqlite_url = f"sqlite:///{sqlite_file_name}"
@@ -78,7 +77,12 @@ def _get_challenge_by_challenge_name(challenge_name:str) -> Challenge:
         challenge = session.exec(statement).first()
     return challenge
 
-def check_challenge(photo_location: str, challenge_name:str) -> dict:
+def _get_challenge_by_challenge_id(challenge_id:int) -> Challenge:
+    with Session(engine) as session:
+        challenge = session.get(Challenge, challenge_id)
+    return challenge
+
+def check_challenge(photo_location: str, challenge: Challenge) -> dict:
     photo_location = Path(photo_location)
     objects:set = detect.run(
         weights=['../yolov5/runs/train/result_trash/weights/best.pt'], 
@@ -91,7 +95,6 @@ def check_challenge(photo_location: str, challenge_name:str) -> dict:
         name='exp', exist_ok=False, line_thickness=3, hide_labels=False, hide_conf=False, half=False, dnn=False, vid_stride=1
     )
 
-    challenge = _get_challenge_by_challenge_name(challenge_name)
     answer = challenge.answer.split(", ")
     answer = set(answer)
     founded = answer.intersection(objects)
@@ -125,9 +128,9 @@ async def data():
         return result
     
 
-@app.post('/upload-images')
-async def upload_images(username:str, challenge_name:str, file:UploadFile):
-    root = os.path.join(IMG_DIR, username, challenge_name)
+@app.post('/upload-image')
+async def upload_image(username:str, challenge_id:int, file:UploadFile):
+    root = os.path.join(IMG_DIR, username, str(challenge_id))
     print(root)
     create_folder(root)
     
@@ -144,13 +147,13 @@ async def upload_images(username:str, challenge_name:str, file:UploadFile):
     Create Photo
     """
     user = _get_or_create_user_by_username(username)
-    challenge = _get_challenge_by_challenge_name(challenge_name)
+    challenge = _get_challenge_by_challenge_id(challenge_id)
     _create_photo(user, challenge, photo_url)
 
     """
     Check Challenge
     """
 
-    result=check_challenge(photo_url, challenge_name)
+    result=check_challenge(photo_url, challenge)
     return result
 
