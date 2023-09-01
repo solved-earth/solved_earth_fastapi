@@ -13,8 +13,8 @@ jobs:
 
       - name: Build the Docker image
         run: |
-          docker build -t SolvedEarth .
-          docker save -o image.tar SolvedEarth
+          docker build -t solvedearth .
+          docker save -o image.tar solvedearth
 
       - name: Copy docker image to server
         uses: appleboy/scp-action@master
@@ -34,4 +34,4 @@ jobs:
           port: 22
           script: |
             docker load -i /home/ubuntu/image.tar
-            docker run -p 80:80 -d SolvedEarth
+            docker run -p 80:80 -d solvedearth
