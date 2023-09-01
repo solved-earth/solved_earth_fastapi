@@ -5,6 +5,10 @@ static/images/
 test.py
 *.db
 
+sqldiff.exe
+sqlite3_analyzer.exe
+sqlite3.exe
+
 ### Python ###
 # Byte-compiled / optimized / DLL files
 __pycache__/

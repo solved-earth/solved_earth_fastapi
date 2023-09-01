@@ -4,6 +4,7 @@ from sqlmodel import Session, SQLModel, create_engine, select
 from pathlib import Path
 import datetime
 import os, sys
+from dotenv import load_dotenv
 from api_models import User, Photo, Challenge
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 from yolov5 import detect
@@ -13,16 +14,22 @@ BASE_DIR = Path(__file__).resolve().parent
 STATIC_DIR = os.path.join(BASE_DIR,'static')
 IMG_DIR = os.path.join(STATIC_DIR,'images')
 
-sqlite_file_name = "database.db"
-sqlite_url = f"sqlite:///{sqlite_file_name}"
+load_dotenv(os.path.join(BASE_DIR, '.env'))
+mysql_user = os.getenv("MYSQL_USER")
+mysql_password = os.getenv("MYSQL_PASSWORD")
+base_url = os.getenv("BASE_URL")
+
+# sqlite_file_name = "database.db"
+# sqlite_url = f"sqlite:///{sqlite_file_name}"
+db_url = "mysql+pymysql://"+mysql_user+":"+mysql_password+"@"+base_url+":3306/solved_earth"
+print(db_url)
 
 connect_args = {"check_same_thread": False}
-engine = create_engine(sqlite_url, echo=True, connect_args=connect_args)
+# engine = create_engine(sqlite_url, echo=True, connect_args=connect_args)
+engine = create_engine(db_url, echo=True)
 
 def create_db_and_tables():
     SQLModel.metadata.create_all(engine)
-
-create_db_and_tables()
 
 app = FastAPI()
 

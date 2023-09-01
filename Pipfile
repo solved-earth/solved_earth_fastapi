@@ -11,6 +11,9 @@ fastapi = "*"
 uvicorn = {version = "*", extras = ["standard"]}
 sqlmodel = "*"
 python-multipart = "*"
+python-dotenv = "*"
+pymysql = "*"
+cryptography = "*"
 
 [dev-packages]
 
