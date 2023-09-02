@@ -9,8 +9,8 @@ RUN pip install pipenv && pipenv install --dev --system --deploy
 
 WORKDIR /app
 
-COPY ./FastAPI/ /app
-COPY ./yolov5/ /app
+COPY ./FastAPI/ /app/FastAPI
+COPY ./yolov5/ /app/yolov5
 
 ADD run.sh /app
 

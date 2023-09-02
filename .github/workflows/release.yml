@@ -16,6 +16,7 @@ jobs:
           echo "MYSQL_USER=$MYSQL_USER" >> .env
           echo "MYSQL_PASSWORD=$MYSQL_PASSWORD" >> .env
         env:
+          BASE_URL: ${{ secrets.BASE_URL }}
           MYSQL_USER: ${{ secrets.MYSQL_USER }}
           MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
       - name: Build the Docker image
