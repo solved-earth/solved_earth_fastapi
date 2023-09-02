@@ -14,7 +14,7 @@ BASE_DIR = Path(__file__).resolve().parent
 STATIC_DIR = os.path.join(BASE_DIR,'static')
 IMG_DIR = os.path.join(STATIC_DIR,'images')
 
-load_dotenv(os.path.join(BASE_DIR, '.env'))
+load_dotenv(os.path.join(PROJECT_DIR, '.env'))
 mysql_user = os.getenv("MYSQL_USER")
 mysql_password = os.getenv("MYSQL_PASSWORD")
 base_url = os.getenv("BASE_URL")

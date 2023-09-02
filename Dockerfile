@@ -12,8 +12,8 @@ WORKDIR /app
 COPY ./FastAPI/ /app
 COPY ./yolov5/ /app
 
-ADD run.sh ./
+ADD run.sh /app
 
 RUN chmod +x ./run.sh
 
-CMD ["./run.sh"] 
+CMD ["/app/run.sh"] 
