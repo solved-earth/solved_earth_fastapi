@@ -21,7 +21,7 @@ base_url = os.getenv("BASE_URL")
 
 # sqlite_file_name = "database.db"
 # sqlite_url = f"sqlite:///{sqlite_file_name}"
-db_url = "mysql+pymysql://"+mysql_user+":"+mysql_password+"@"+base_url+":3306/solved_earth"
+db_url = "mysql+pymysql://"+str(mysql_user)+":"+str(mysql_password)+"@"+str(base_url)+":3306/solved_earth"
 print(db_url)
 
 connect_args = {"check_same_thread": False}
