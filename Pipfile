@@ -12,8 +12,8 @@ uvicorn = {version = "*", extras = ["standard"]}
 sqlmodel = "*"
 python-multipart = "*"
 python-dotenv = "*"
-pymysql = "*"
 cryptography = "*"
+pymysql = {version = "*", extras = ["rsa"]}
 
 [dev-packages]
 

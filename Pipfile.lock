@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "81f54da9ff1311e1a7a01d1e57cafe7a8514b6e8920f285aba5db3a6db2179b9"
+            "sha256": "6832c65ef616f1d905537fe163c33e11968c520bee84ea0209a5e59b8b4ea7a0"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -915,6 +915,9 @@
             "version": "==1.10.12"
         },
         "pymysql": {
+            "extras": [
+                "rsa"
+            ],
             "hashes": [
                 "sha256:4f13a7df8bf36a51e81dd9f3605fede45a4878fe02f9236349fd82a3f0612f96",
                 "sha256:8969ec6d763c856f7073c4c64662882675702efcb114b4bcbb955aea3a069fa7"
