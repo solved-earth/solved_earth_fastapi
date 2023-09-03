@@ -17,9 +17,10 @@ jobs:
           MYSQL_USER: ${{ secrets.MYSQL_USER }}
           MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
         run: |
-          echo "MYSQL_USER=$MYSQL_USER" >> app/.env
-          echo "MYSQL_PASSWORD=$MYSQL_PASSWORD" >> app/.env
-          
+          echo "MYSQL_USER=$MYSQL_USER" >> .env
+          echo "MYSQL_PASSWORD=$MYSQL_PASSWORD" >> .env
+          echo "BASE_URL=$BASE_URL" >> .env
+
       - name: Build the Docker image
         run: |
           docker build -t solvedearth .
