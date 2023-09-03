@@ -11,9 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Create env File
-        run: |
-          echo "${{ secrets.ENV_FILE }}" > .env
+
 
       - name: Build the Docker image
         run: |
@@ -39,3 +37,7 @@ jobs:
           script: |
             docker load -i /home/ubuntu/image.tar
             docker run -p 80:80 -d solvedearth
+
+      - name: Create env File
+        run: |
+          echo "${{ secrets.ENV_FILE }}" > .env
