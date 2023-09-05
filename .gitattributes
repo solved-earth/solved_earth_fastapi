@@ -1,2 +1,1 @@
-'*.pt' !text !filter !merge !diff
 '*.ext' !text !filter !merge !diff
