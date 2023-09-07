@@ -68,20 +68,20 @@ This is still ongoing project. Please contact us(ecotreegrowing@gmail.com) to di
 
 ### 1. Solved.Earth System Structure (Solved.Earth 시스템 구조)
 
-   <p align="center"><img src=./report/struct1.jpg alt="struct1" width="800"/></p>
+   <p align="center"><img src=https://github.com/solved-earth/Solved.Earth/blob/main/report/struct1.jpg alt="struct1" width="800"/></p>
 
 <br/>
 <br/>
    
 ### 2. Solved.Earth App Client Application Structure (Solved.Earth 앱 클라이언트 어플리케이션 구조)
 
-   <p align="center"><img src=./report/struct2.jpg alt="struct2" width="800"/></p>
+   <p align="center"><img src=https://github.com/solved-earth/Solved.Earth/blob/main/report/struct2.jpg alt="struct2" width="800"/></p>
 
 <br/>
    
 ### 3. API Detail View (API 상세 구조)
 
-   <p align="center"><img src=./report/struct3.jpg alt="struct3" width = "800"/></p>
+   <p align="center"><img src=https://github.com/solved-earth/Solved.Earth/blob/main/report/struct4.jpg alt="struct3" width = "800"/></p>
 
 #### 3-1. API Endpoint
 
